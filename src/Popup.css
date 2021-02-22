@@ -1,0 +1,25 @@
+.popup {  
+     position: fixed;
+    width: 100%;
+    height: 140%;
+    top: 112px;
+    left: 0;
+    right: 0;
+    bottom: 229px;
+    margin: auto;
+    background-color: rgba(357,156,175, 0.5);  
+}  
+.popup_inner {  
+position: absolute;
+    width: 30%;
+    font-family: cursive,serif;
+    color: rgb(236, 247, 244);
+    height: 42%;
+    left: 18%;
+    right: 16%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgba(18, 17, 36, 0.8); 
+}

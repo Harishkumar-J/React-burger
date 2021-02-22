@@ -1,0 +1,202 @@
+import React, { Component } from 'react';
+
+import './App.css';
+
+class App extends Component {
+
+
+  render() {
+    function random() {
+      let max=15,randomarray=[],j=0
+      for (let i=0;i<max;i++){
+        let temp= Math.floor(Math.random() * max);
+        if (randomarray.indexOf(temp) === -1) {
+          randomarray.push(temp);
+        j++
+      }
+        else
+          i--;
+      }
+      console.log(randomarray)
+      return(randomarray[])
+      }
+    
+   2.
+import React from 'react';
+
+import './App.css';
+
+class App extends React.Component {
+  randomnumber = () => {
+    let max = 16, randomarray = []
+    for (let i = 0; i < max; i++) {
+      let temp = Math.floor(Math.random() * max);
+      if (randomarray.indexOf(temp) === -1) {
+        randomarray.push(temp);
+      }
+      else
+        i--;
+    }
+    return (randomarray)
+  }
+  render() {
+    const randomNumberArray = this.randomnumber()
+    const Box = []
+    let uniqueNumber = 0
+    function getRowBox() {
+      let rowBox = []
+      for (let j = 0; j < 4; j++) {
+        rowBox.push(<div id={uniqueNumber} className="box" >
+          {randomNumberArray[uniqueNumber] !== 0 ? randomNumberArray[uniqueNumber] : ''}
+        </div>)
+        uniqueNumber += 1
+      }
+      return rowBox
+    }
+    for (let i = 0; i < 4; i++) {
+      Box.push(<div style={{ display: "flex" }}>{getRowBox()}</div>)
+    }
+
+    return (
+      <div className="Container" >
+        <h3>16 tile puzzle</h3>
+        <div style={{}} >{Box}</div>
+      </div>
+    );
+  }
+}
+export default App;
+3.
+var a =  document.getElementById("9")
+var b= document.getElementById("5")
+temp=b.innerText
+b.innerText=a.innerText
+a.innerText=temp
+
+timer---------------------
+
+import React, { Component } from "react";
+import "./App.css";
+class App extends Component {
+  ticker;
+  constructor() {
+    super();
+    this.state = {
+      milliseconds: 0,
+      seconds: 0,
+      minutes: 0,
+      hours: 0,
+      //hrs:"00",sec:"00",min:"00",
+      isRunning: false
+    };
+  }
+  setStartTimer = () => {
+    this.setState({
+      isRunning: true
+    });
+    this.ticker = setInterval(() => {
+      if ((this.state.milliseconds < 10) & this.state.isRunning) {
+        this.setState(prevState => {
+          return {
+            milliseconds: prevState.milliseconds + 1
+          };
+        });
+      } else if ((this.state.seconds < 59) & this.state.isRunning) {
+        this.setState(prevState => {
+          return {
+            milliseconds: 0,
+            seconds: prevState.seconds + 1
+          };
+        });
+      } else if ((this.state.minutes < 59) & this.state.isRunning) {
+        this.setState(prevState => {
+          return {
+            milliseconds: 0,
+            seconds: 0,
+            minutes: prevState.minutes + 1
+          };
+        });
+      } else if ((this.state.hours < 23) & this.state.isRunning) {
+        this.setState(prevState => {
+          return {
+            milliseconds: 0,
+            seconds: 0,
+            minutes: 0,
+            hours: prevState.hours + 1
+          };
+        });
+      }
+    }, 100);
+  };
+  setStopTimer = () => {
+    this.setState({
+      isRunning: false
+    });
+    clearInterval(this.ticker);
+  };
+  setResetTimer = () => {
+    this.setState({
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0
+    });
+  };
+  render() {
+    let ms, sec, min, hrs;
+    ms =
+      this.state.milliseconds > 9
+        ? this.state.milliseconds
+        : "0" + this.state.milliseconds;
+    sec =
+      this.state.seconds > 9 ? this.state.seconds : "0" + this.state.seconds;
+    min =
+      this.state.minutes > 9 ? this.state.minutes : "0" + this.state.minutes;
+    hrs = this.state.hours > 9 ? this.state.hours : "0" + this.state.hours;
+    return (
+      <div> 
+        <div className="Main">
+          <button className="ActionButton" onClick={this.setStartTimer}>
+            Start
+          </button>
+          <button className="ActionButton" onClick={this.setStopTimer}>
+            Stop
+          </button>
+          <button className="ActionButton" onClick={this.setResetTimer}>
+            Reset
+          </button>
+        </div>
+        <div className="Timer">
+          {hrs}:{min}:{sec}:{ms}
+        </div>
+      </div>
+    );
+  }
+}
+export default App;
+
+c.Main {
+  margin:20px;
+  padding:10px;
+  text-align: center
+}
+.ActionButton {
+  margin:20px;
+  padding:10px;
+  font-size: 20px;
+  height:50px;
+  width:100px;
+  border:1px solid black;
+
+}
+
+.Timer {
+  margin-left :610px;
+  padding: 10px;
+  height :auto;
+  width :200px;
+  border:1px solid black;
+  text-align: center;
+  font-size: 40px;
+
+}

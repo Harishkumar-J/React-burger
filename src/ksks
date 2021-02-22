@@ -1,0 +1,76 @@
+import React from 'react';
+
+import './App.css';
+
+class App extends React.Component {
+  randomnumbers = () => {
+    let max = 16, randomarray = []
+    for (let i = 0; i < max; i++) {
+      let temp = Math.floor(Math.random() * max);
+      if (randomarray.indexOf(temp) === -1) {
+        randomarray.push(temp);
+      }
+      else
+        i--;
+    }
+    return (randomarray)
+  }
+  render() {
+    const randomNumberArray = this.randomnumbers()
+    const Box = []
+    let uniqueNumber = 0
+
+    function handleClick(e) {
+      const a = (randomNumberArray[+e.target.id - 4])
+      let temp
+      if (a === 0) {
+        temp = randomNumberArray[+e.target.id]
+        randomNumberArray[+e.target.id] = 0
+        randomNumberArray[+e.target.id - 4] = temp
+      }
+      console.log(a, e.target.id, "=", randomNumberArray[e.target.id], randomNumberArray)
+    }
+    function getRowBox() {
+      let rowBox = []
+      for (let j = 0; j < 4; j++) {
+        rowBox.push(<div id={uniqueNumber} className="box" onClick={(e) => handleClick(e)}>
+          {randomNumberArray[uniqueNumber] !== 0 ? randomNumberArray[uniqueNumber] : ''}
+        </div>)
+        uniqueNumber += 1
+      }
+      return rowBox
+    }
+
+    for (let i = 0; i < 4; i++) {
+      Box.push(<div style={{ display: "flex" }} >{getRowBox()}</div>)
+    }
+
+    return (
+      <div className="Container" >
+        <h3>16 tile puzzle</h3>
+        <div>{Box}</div>
+      </div>
+    );
+  }
+}
+export default App;
+
+/* .box{
+    margin:1px;
+    height:50px;
+    width: 50px;
+    background:lightblue;
+    text-align: center;
+} */
+.Container{
+    text-align: center;
+    align-content: center;
+}
+.box {
+width: 60px;
+height: 60px;
+border: 1px solid black;
+line-height: 60px;
+}
+
+
